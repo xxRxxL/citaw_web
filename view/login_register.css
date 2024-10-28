@@ -1,0 +1,281 @@
+/* * = universalSelector (to reset padding, margin, and set box-sizing) */
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+/* :root = rootSelector (for CSS variables) */
+:root {
+	--primary-font: Arial;
+	--text-color: #1e1e1e;
+	--primary-color: rgba(211, 254, 196, 0.344);
+	--secondary-color: rgba(85, 222, 10, 0.392);
+	--tertiary-color: #ffffffab;
+	--accent-color: rgba(211, 254, 196, 0.344);
+	--shadow: 1px 1px 20px rgba(0, 0, 0, 0.173);
+	--input-color: #e5e5e5;
+}
+
+/* body = bodyTag (for the main page layout) */
+body {
+	position: relative;
+	font-family: var(--primary-font);
+	background: var(--primary-color);
+}
+
+/* LOGIN CLASSES */
+/* login_page_layout = divTag (for the layout of the login page) */
+.login_page_layout {
+	display: grid;
+	justify-content: center;
+	grid-template-columns: repeat(2, 50%);
+	grid-template-rows: 100px 500px;
+	height: 100dvh;
+	gap: 10px;
+	padding: 20px;
+}
+
+/* carouselContainer = asideTag (for the image carousel on the left) */
+.carouselContainer {
+	grid-column: 1;
+	grid-row: 2;
+	position: relative;
+	overflow: hidden;
+	border-radius: 20px;
+	background: var(--tertiary-color);
+	box-shadow: var(--shadow);
+}
+
+/* carouselContainer > img = imgTag (for images in the carousel) */
+.carouselContainer > img {
+	position: absolute;
+	border-radius: 20px;
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+/* loginContainer = mainTag (for the main login form area) */
+.loginContainer {
+	grid-column: 2;
+	grid-row: 2;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
+	background: var(--tertiary-color);
+	box-shadow: var(--shadow);
+}
+
+/* loginForm = formTag (for the login form containing inputs and buttons) */
+.loginForm {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 80%;
+	gap: 20px;
+}
+
+/* loginForm > h1 = h1Tag (for the title of the login form) */
+.loginForm > h1 {
+	position: absolute;
+	top: 20px;
+	font-size: 4.5dvw;
+}
+
+/* loginForm > input = inputTag (for the input fields in the login form) */
+.loginForm > input {
+	height: 50px;
+	width: 100%;
+	text-align: left;
+	padding-left: 20px;
+	border-radius: 999px;
+	border: none;
+	outline: none;
+	background: var(--input-color);
+}
+
+/* loginForm > input::placeholder = placeholderText (for input placeholders) */
+.loginForm > input::placeholder {
+	font-size: 1.7dvw;
+}
+
+/* loginForm > input:focus::placeholder = placeholderText (for input placeholders on focus) */
+.loginForm > input:focus::placeholder {
+	transition: transform 0.3s ease;
+	transform: translateY(-14px);
+}
+
+/* loginButton = aTag (for the button to submit the login form) */
+.loginButton,
+.registerButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+	border-radius: 999px;
+	color: var(--text-color);
+	box-shadow: var(--shadow);
+}
+
+/* loginButton = aTag (for the button to submit the login form) */
+.loginButton {
+	height: 50px;
+	width: 40%;
+	background: var(--accent-color);
+}
+
+/* registerButton = aTag (for the button to navigate to the registration page) */
+.registerButton {
+	position: absolute;
+	bottom: 20px;
+	height: 50px;
+	width: 60%;
+	border: 1px solid black;
+	background: var(--tertiary-color);
+}
+
+/* REGISTER PAGE CLASSES */
+/* register_page_layout = sectionTag (for the layout of the registration page) */
+.register_page_layout {
+	display: grid;
+	justify-content: center;
+	grid-template-columns: 1fr 2fr 1fr;
+	grid-template-rows: 100px 600px;
+	height: 100dvh;
+	gap: 10px;
+	padding: 20px;
+}
+
+/* registerContainer = mainTag (for the main registration form area) */
+.registerContainer {
+	grid-column: 2;
+	grid-row: 2;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
+	background: var(--tertiary-color);
+	box-shadow: var(--shadow);
+}
+
+/* registerForm = formTag (for the registration form containing inputs and buttons) */
+.registerForm {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	gap: 20px;
+}
+
+/* registerForm > h1 = h1Tag (for the title of the registration form) */
+.registerForm > h1 {
+	position: absolute;
+	top: 20px;
+	font-size: 4.5dvw;
+}
+
+/* registerForm > input = inputTag (for the input fields in the registration form) */
+.registerForm > input {
+	height: 50px;
+	text-align: left;
+	padding-left: 20px;
+	border-radius: 999px;
+	border: none;
+	outline: none;
+	background: var(--input-color);
+}
+
+/* registerForm > input:nth-of-type(1) = inputTag (for the first input in registration form) */
+.registerForm > input:nth-of-type(1) {
+	width: 100%;
+	flex-grow: 1;
+}
+
+/* registerForm > input:nth-of-type(2) = inputTag (for the second input in registration form) */
+.registerForm > input:nth-of-type(2) {
+	width: 100%;
+	flex-grow: 1;
+}
+
+/* registerForm > input:nth-of-type(3) = inputTag (for the third input in registration form) */
+.registerForm > input:nth-of-type(3) {
+	width: 40%;
+	flex-grow: 1;
+}
+
+/* registerForm > input:nth-of-type(4) = inputTag (for the fourth input in registration form) */
+.registerForm > input:nth-of-type(4) {
+	width: 40%;
+	flex-grow: 1;
+}
+
+/* registerForm > input:nth-of-type(5) = inputTag (for the fifth input in registration form) */
+.registerForm > input:nth-of-type(5) {
+	width: 100%;
+	flex-grow: 1;
+}
+
+/* registerForm > input::placeholder = placeholderText (for input placeholders in registration form) */
+.registerForm > input::placeholder {
+	font-size: 1.7dvw;
+}
+
+/* registerForm > input:focus::placeholder = placeholderText (for input placeholders on focus) */
+.registerForm > input:focus::placeholder {
+	transition: transform 0.3s ease;
+	transform: translateY(-14px);
+}
+
+/* Header Footer login register */
+/* header = headerTag (for the page header containing the logo and title) */
+header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	height: 100px;
+	width: 100dvw;
+	background: var(--secondary-color);
+	box-shadow: var(--shadow);
+}
+
+/* header > img = imgTag (for the logo in the header) */
+header > img {
+	position: absolute;
+	height: 6dvh;
+	width: 8dvw;
+	left: 20px;
+}
+
+/* header > h1 = h1Tag (for the title in the header) */
+header > h1 {
+	font-size: 5dvw;
+	color: white;
+}
+
+/* footer = footerTag (for the footer section of the page) */
+footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	bottom: 0;
+	height: 100px;
+	width: 100dvw;
+	background: var(--secondary-color);
+	box-shadow: var(--shadow);
+}
+
+/* footer > p = pTag (for the footer text) */
+footer > p {
+	font-size: 2.5vw;
+	color: white;
+}
