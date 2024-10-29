@@ -21,37 +21,6 @@ body {
 	font-family: var(--primary-font);
 	background: var(--primary-color);
 }
-/* MAIN PAGE DESIGN */
-
-/* MAIN PAGE CLASSES */
-/* nav = headerTag (for the page header containing the logo and title) */
-/* logo = imgTag (for the site logo) */
-/* mainTitle = h1Tag (for the main title of the page) */
-/* searchForm = formTag (for the search functionality) */
-/* searchInput = inputTag (for the search text input) */
-/* searchIcon = imgTag (for the search icon) */
-/* cartContainer = divTag (for the shopping cart icon and item count) */
-/* cartIcon = imgTag (for the shopping cart icon) */
-/* cartItemCount = spanTag (for displaying the number of items in the cart) */
-/* userImage = imgTag (for the user profile image) */
-/* mainPageLayout = sectionTag (for the main content layout) */
-/* mainContent = mainTag (for the main content area) */
-/* productLayout = sectionTag (for the layout of the products) */
-/* itemContainer = articleTag (for individual product items) */
-/* imgContainer = divTag (for the product image container) */
-/* productImg = imgTag (for the product image) */
-/* imgBanner = divTag (for the promotional banner) */
-/* productDetail = divTag (for the details of the product) */
-/* productDescription = pTag (for the product description) */
-/* productPrice = h1Tag (for the current price of the product) */
-/* originalPrice = h4Tag (for the original price of the product) */
-/* soldCount = h5Tag (for displaying the number of items sold) */
-/* starShelf = divTag (for the product rating and add to cart option) */
-/* starIcon = spanTag (for the star icons representing ratings) */
-/* ratingCount = h5Tag (for the number of ratings) */
-/* addToCartIcon = imgTag (for the add to cart icon) */
-/* carouselContainer = sectionTag (for the image carousel section) */
-/* categoryContainer = sectionTag (for the category listings) */
 
 /* main_page_layout = sectionTag (for the main content layout) */
 .main_page_layout {
