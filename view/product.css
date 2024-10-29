@@ -1,453 +1,603 @@
+/* * = universalSelector (to reset padding, margin, and set box-sizing) */
 * {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
 }
 
-/*MAIN PAGE DESIGN*/
-/*MAIN PAGE CLASSES*/
-/*
-productGrid = bodyTag
-cartContainer = asideTag
-productDetail = mainTag
-imgContainer = asideTag
-itemImg = imgTag
-productReview = asideTag
-productFlex = sectionTag
-moreItem = articleTag
-userReview = artcle
-userComment = formTag
-userImg = imgTag
-userName = pTag
-users = articleTag
-*/
+/* :root = rootSelector (for CSS variables) */
+:root {
+	--primary-font: Arial;
+	--text-color: #1e1e1e;
+	--primary-color: rgba(211, 254, 196, 0.344);
+	--secondary-color: rgba(85, 222, 10, 0.392);
+	--tertiary-color: #ffffffab;
+	--accent-color: rgba(211, 254, 196, 0.344);
+	--shadow: 1px 1px 20px rgba(0, 0, 0, 0.173);
+	--input-color: #e5e5e5;
+}
 
-.productGrid {
+/* body = bodyTag (for the main page layout) */
+body {
+	position: relative;
+	font-family: var(--primary-font);
+	background: var(--primary-color);
+}
+/* product_page_layout = sectionTag (for the main layout of the product page) */
+.product_page_layout {
 	display: grid;
 	grid-template-columns: auto 3fr 2fr;
-	grid-template-rows: 1fr auto;
+	grid-template-rows: 100px 50%;
 	justify-content: center;
-	background: #b9ff9f53;
-	height: 100%;
+	height: 100dvh;
 	gap: 10px;
-	margin-top: 20px;
+	padding: 10px;
 }
-.cartContainer {
-	display: grid;
-	grid-template-rows: 50px 50px;
-	align-item: center;
-	place-items: center;
+
+/* sideNavbar = asideTag (for the side navigation bar) */
+.sideNavbar {
+	grid-column: 1;
+	grid-row: 2;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	padding: 10px;
 	width: 100px;
-	grid-column: 1 / 2;
-	background: #ffffffab;
 	border-radius: 20px;
 	border: 2px solid white;
-	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.173);
+	background: var(--secondary-color);
+	box-shadow: var(--shadow);
 }
-.cartContainer > img {
-	grid-row: 1 / 2;
+
+/* sideNavbar > img = imgTag (for the shopping cart icon) */
+.sideNavbar > img {
+	position: absolute;
+	top: 20px;
 	height: 50px;
 	width: 50px;
 }
-.cartContainer > h1 {
-	grid-row: 2 / 4;
-	font-family: arial;
+
+/* sideNavbar > span = spanTag (for displaying item count in the side navbar) */
+.sideNavbar > span {
+	display: inline-block;
+	display: grid;
+	place-items: center;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	font-weight: 700;
+	color: white;
+	background: red;
+	border-radius: 50%;
+	width: 2dvw;
+	z-index: 1;
+}
+
+/* Styles for the main heading in the side navigation bar */
+.sideNavbar > h1 {
 	font-size: 40px;
-	color: #b9ff9fad;
+	color: white;
 	writing-mode: vertical-lr;
 	text-orientation: upright;
 }
+
+/* Container for the product shelf, positioning and styling */
+.productShelf {
+	position: relative;
+	grid-column: 2;
+	grid-row: 2;
+	background: #ffffffab; /* Semi-transparent white background */
+	border-radius: 20px; /* Rounded corners */
+	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.173); /* Shadow effect */
+}
+
+/* Container for each individual product */
 .productContainer {
-	grid-column: 2 / 3;
-	background: #ffffffab;
-	border-radius: 20px;
-	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.173);
-}
-.imgContainer {
 	position: relative;
-	height: 440px;
-	width: 100%;
-	border-radius: 10px;
-	border: 2px solid white;
-	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.173);
+	height: 440px; /* Fixed height */
+	width: 100%; /* Full width */
+	border-radius: 10px; /* Rounded corners */
+	border: 2px solid white; /* White border */
+	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.173); /* Shadow effect */
 }
+
+/* Styles for the product image */
 .productImg {
-	height: 300px;
-	width: 100%;
-	border-radius: 10px;
-	object-fit: cover;
-	object-position: center;
+	height: 300px; /* Fixed height for images */
+	width: 100%; /* Full width */
+	border-radius: 10px; /* Rounded corners */
+	object-fit: cover; /* Cover the container */
+	object-position: center; /* Center the image */
 }
+
+/* Container for product name and details */
 .nameShelf {
-	position: absolute;
-	font-family: Arial;
-	display: grid;
-	align-items: center;
-	grid-template-columns: 230px 123px;
-	grid-template-rows: 20px 20px 20px;
-	padding: 20px;
-	gap: 20px;
+	position: absolute; /* Positioned within the parent */
+	font-family: Arial; /* Font style */
+	display: grid; /* Using grid layout */
+	align-items: center; /* Center items vertically */
+	grid-template-columns: 230px 123px; /* Column layout */
+	grid-template-rows: 20px 20px 20px; /* Row layout */
+	padding: 20px; /* Padding inside the container */
+	gap: 20px; /* Space between grid items */
 }
 
+/* Styles for the price symbol */
 .priceSymbol {
-	grid-column: 1 / 2;
-	font-size: 30px;
-	font-weight: 500;
+	grid-column: 1 / 2; /* Occupies the first column */
+	font-size: 30px; /* Font size for price symbol */
+	font-weight: 500; /* Font weight */
 }
+
+/* Styles for the price number */
 .priceNum {
-	font-size: 40px;
-	font-weight: 500;
+	font-size: 40px; /* Larger font size for price */
+	font-weight: 500; /* Font weight */
 }
+
+/* Styles for items on sale */
 .off {
-	opacity: 40%;
-	text-decoration: line-through;
+	opacity: 40%; /* Dimmed effect */
+	text-decoration: line-through; /* Strikethrough style */
 }
+
+/* Styles for discount labels */
 .discount {
-	grid-column: 2 / 3;
-	font-size: 15px;
-	margin-top: 12px;
-	border: 1px solid #1d6b0053;
-	border-radius: 2px;
-	height: 25px;
-	padding: 2px;
+	grid-column: 2 / 3; /* Occupies the second column */
+	font-size: 15px; /* Font size for discount */
+	margin-top: 12px; /* Margin above the discount label */
+	border: 1px solid #1d6b0053; /* Border styling */
+	border-radius: 2px; /* Rounded corners */
+	height: 25px; /* Fixed height */
+	padding: 2px; /* Padding inside the label */
 }
+
+/* Styles for the product name */
 .productName {
-	grid-column: 1 / 4;
-	grid-row: 2 / 3;
-	font-size: 20px;
+	grid-column: 1 / 4; /* Spans across three columns */
+	grid-row: 2 / 3; /* Positioned in the second row */
+	font-size: 20px; /* Font size for product name */
 }
-.diff {
-	display: grid;
-	grid-row: 3 / 4;
-	grid-template-columns: 170px 200px;
+
+/* Container for reviews and sold information */
+.review_sold {
+	display: grid; /* Using grid layout */
+	grid-row: 3 / 4; /* Positioned in the third row */
+	grid-template-columns: 170px 200px; /* Column layout for review and sold info */
 }
-/* review */
+
+/* Styles for user reviews */
 .usReview {
-	font-weight: 400;
-	grid-column: 1 / 2;
-	font-size: 20px;
-	opacity: 70%;
+	font-weight: 400; /* Normal font weight */
+	grid-column: 1 / 2; /* Occupies the first column */
+	font-size: 20px; /* Font size for reviews */
+	opacity: 70%; /* Slightly transparent */
 }
-/* review */
+
+/* Styles for user review spans */
 .usReview > span {
-	font-weight: 400;
-	font-size: 18px;
-	opacity: 70%;
+	font-weight: 400; /* Normal font weight */
+	font-size: 18px; /* Smaller font size for spans */
+	opacity: 70%; /* Slightly transparent */
 }
+
+/* Styles for sold information */
 .sold {
-	font-weight: 400;
-	grid-column: 2 / 5;
-	font-size: 20px;
-	opacity: 70%;
+	font-weight: 400; /* Normal font weight */
+	grid-column: 2 / 5; /* Spans across multiple columns */
+	font-size: 20px; /* Font size for sold info */
+	opacity: 70%; /* Slightly transparent */
 }
+
+/* Styles for sold spans */
 .sold > span {
-	font-weight: 400;
-	font-size: 18px;
-	opacity: 70%;
+	font-weight: 400; /* Normal font weight */
+	font-size: 18px; /* Smaller font size for spans */
+	opacity: 70%; /* Slightly transparent */
 }
-
+/* Container for color sale section with flex layout */
 .colorSale {
-	display: flex;
-	align-items: center;
-	background: #1d6b0053;
-	border-radius: 5px;
-	width: 530px;
+	display: flex; /* Flexbox for layout */
+	align-items: center; /* Center items vertically */
+	background: var(--secondary-color); /* Background color from variable */
+	border-radius: 5px; /* Rounded corners */
+	width: 530px; /* Fixed width */
 }
+
+/* Styles for paragraph inside color sale */
 .colorSale > p {
-	font-size: 20px;
-	color: white;
+	font-size: 20px; /* Font size for text */
+	color: white; /* Text color */
 }
 
+/* Container for product information with column layout */
 .productInfo {
-	display: flex;
-	flex-direction: column;
-	padding: 20px;
+	display: flex; /* Flexbox layout */
+	flex-direction: column; /* Stack items vertically */
+	padding: 20px; /* Padding inside the container */
 }
+
+/* Styles for the main heading in product info */
 .productInfo > h1 {
-	margin-bottom: 10px;
-	text-align: center;
+	margin-bottom: 10px; /* Space below the heading */
+	text-align: center; /* Center the text */
 }
+
+/* Styles for paragraphs in product info */
 .productInfo > p {
-	font-size: 90%;
-	text-align: left;
-	line-height: 50px;
+	font-size: 90%; /* Font size for description */
+	text-align: left; /* Align text to the left */
+	line-height: 50px; /* Spacing between lines */
 }
+
+/* User shop container with grid layout */
 .userShop {
-	display: grid;
-	grid-template-columns: 85px 40px 40px 40px auto;
-	width: 100%;
-	grid-template-rows: 20px 10px 10px 1px;
-	box-shadow: -5px -5px 20px rgba(0, 0, 0, 0.173);
-	gap: 10px;
-	padding: 10px;
-	text-align: center;
-	border-bottom: 1px solid #00000031;
+	display: grid; /* Grid layout */
+	grid-template-columns: 85px 40px 40px 40px auto; /* Column widths */
+	width: 100%; /* Full width */
+	grid-template-rows: 20px 10px 10px 1px; /* Row heights */
+	box-shadow: -5px -5px 20px rgba(0, 0, 0, 0.173); /* Shadow effect */
+	gap: 10px; /* Space between grid items */
+	padding: 10px; /* Padding inside the container */
+	text-align: center; /* Center text alignment */
+	border-bottom: 1px solid #00000031; /* Bottom border */
 }
+
+/* Styles for shop image */
 .shopImg {
-	grid-column: 1 / 2;
-	grid-row: 1 / 2;
-	height: 70px;
-	width: 70px;
-	border-radius: 999px;
+	grid-column: 1 / 2; /* Occupies the first column */
+	grid-row: 1 / 2; /* Occupies the first row */
+	height: 70px; /* Fixed height */
+	width: 70px; /* Fixed width */
+	border-radius: 999px; /* Circular image */
 }
+
+/* Styles for heading level 5 */
 h5 {
-	font-weight: 500;
+	font-weight: 500; /* Normal font weight */
 }
+
+/* Styles for main shop heading */
 .userShop > h1 {
-	grid-column: 2 / 10;
-	font-weight: bold;
-	font-size: 15px;
-	padding-top: 6px;
-	text-align: left;
+	grid-column: 2 / 10; /* Spans across multiple columns */
+	font-weight: bold; /* Bold font weight */
+	font-size: 15px; /* Font size */
+	padding-top: 6px; /* Padding at the top */
+	text-align: left; /* Align text to the left */
 }
+
+/* Styles for first user shop heading level 5 */
 .userShop > h5:nth-of-type(1) {
-	grid-column: 2 / 3;
-	grid-row: 2 / 3;
-	font-size: 15px;
+	grid-column: 2 / 3; /* Occupies the second column */
+	grid-row: 2 / 3; /* Occupies the second row */
+	font-size: 15px; /* Font size */
 }
+
+/* Styles for second user shop heading level 5 */
 .userShop > h5:nth-of-type(2) {
-	grid-column: 3 / 4;
-	grid-row: 2 / 3;
-	font-size: 15px;
+	grid-column: 3 / 4; /* Occupies the third column */
+	grid-row: 2 / 3; /* Occupies the second row */
+	font-size: 15px; /* Font size */
 }
+
+/* Styles for third user shop heading level 5 */
 .userShop > h5:nth-of-type(3) {
-	grid-column: 4 / 5;
-	grid-row: 2 / 3;
-	font-size: 15px;
+	grid-column: 4 / 5; /* Occupies the fourth column */
+	grid-row: 2 / 3; /* Occupies the second row */
+	font-size: 15px; /* Font size */
 }
 
+/* Styles for heading level 6 */
 h6 {
-	font-weight: 400;
-	color: #000000c1;
+	font-weight: 400; /* Normal font weight */
+	color: #000000c1; /* Text color */
 }
+
+/* Styles for first user shop heading level 6 */
 .userShop > h6:nth-of-type(1) {
-	grid-column: 2 / 3;
-	grid-row: 3 / 3;
-	font-size: 8px;
+	grid-column: 2 / 3; /* Occupies the second column */
+	grid-row: 3 / 3; /* Occupies the third row */
+	font-size: 8px; /* Font size */
 }
+
+/* Styles for second user shop heading level 6 */
 .userShop > h6:nth-of-type(2) {
-	grid-column: 3 / 4;
-	grid-row: 3 / 3;
-	font-size: 8px;
+	grid-column: 3 / 4; /* Occupies the third column */
+	grid-row: 3 / 3; /* Occupies the third row */
+	font-size: 8px; /* Font size */
 }
+
+/* Styles for third user shop heading level 6 */
 .userShop > h6:nth-of-type(3) {
-	grid-column: 4 / 5;
-	grid-row: 3 / 3;
-	font-size: 8px;
+	grid-column: 4 / 5; /* Occupies the fourth column */
+	grid-row: 3 / 3; /* Occupies the third row */
+	font-size: 8px; /* Font size */
 }
+
+/* Container for shop buttons with flex layout */
 .shopButton {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	margin: 10px;
-	gap: 10px;
+	display: flex; /* Flexbox layout */
+	flex-direction: row; /* Row layout */
+	justify-content: center; /* Center items horizontally */
+	margin: 10px; /* Margin around the container */
+	gap: 10px; /* Space between buttons */
 }
+
+/* Styles for Follow button */
 .Follow {
-	font-size: 15px;
-	font-weight: 700;
-	background: #a0bf95;
-	color: white;
-	border: none;
+	font-size: 15px; /* Font size for button */
+	font-weight: 600; /* Bold font weight */
+	color: black; /* Text color */
+	border: none; /* No border */
+	background: var(--accent-color); /* Background color from variable */
+	box-shadow: var(--shadow); /* Shadow effect from variable */
 }
 
+/* Cart shelf positioning at the bottom */
+.cartShelf {
+	position: absolute; /* Positioned relative to the nearest positioned ancestor */
+	bottom: 0; /* Aligned to the bottom */
+	width: 95%; /* Width of the cart shelf */
+	display: flex; /* Flexbox layout */
+	flex-direction: row; /* Row layout */
+	justify-content: center; /* Center items horizontally */
+	align-items: center; /* Center items vertically */
+	margin: 10px; /* Margin around the shelf */
+	gap: 10px; /* Space between items */
+}
+
+/* Styles for anchor tags */
 a {
-	font-family: Sans-Serif;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 15px;
-	text-decoration: none;
-	border-radius: 20px;
-	height: 50px;
-	width: 50%;
-	border: solid black;
-	color: black;
-	background: #00000000;
-}
-.relative {
-	position: relative;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
+	display: flex; /* Flexbox layout */
+	justify-content: center; /* Center items horizontally */
+	align-items: center; /* Center items vertically */
+	font-size: 15px; /* Font size for link */
+	text-decoration: none; /* Remove underline */
+	border-radius: 20px; /* Rounded corners */
+	height: 50px; /* Fixed height */
+	width: 50%; /* Width of the link */
+	border: solid black; /* Solid black border */
+	color: black; /* Text color */
+	background: #00000000; /* Transparent background */
 }
 
-.relative > input {
-	height: 50px;
-	width: 70%;
-	border-radius: 20px;
-	text-align: center;
-	border: none;
-	background: rgba(206, 206, 206, 0.668);
+/* Container for user quantity input */
+.userQty {
+	position: relative; /* Positioned relative to the nearest positioned ancestor */
+	display: flex; /* Flexbox layout */
+	flex-direction: row; /* Row layout */
+	justify-content: center; /* Center items horizontally */
+	align-items: center; /* Center items vertically */
+	gap: 10px; /* Space between items */
 }
+
+/* Styles for input in user quantity */
+.userQty > input {
+	height: 50px; /* Fixed height */
+	width: 70%; /* Width of the input */
+	border-radius: 20px; /* Rounded corners */
+	text-align: center; /* Center text inside input */
+	border: none; /* No border */
+	background: var(--input-color); /* Background color from variable */
+}
+
+/* Dropdown menu styles */
 .dropdown {
-	position: absolute;
-	top: 100%;
-	left: 40px;
-	display: grid;
-	grid-template-rows: auto;
-	background: rgba(206, 206, 206, 0.809);
-	width: 70px;
-	border-radius: 5px;
-	display: none;
-}
-.dropdown > p {
-	grid-row: 1 / 2;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 5px;
-	height: 50px;
-	border: solid rgba(0, 0, 0, 0.071);
-	border-bottom-width: 1px;
-}
-.dropdown > p:hover {
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: center;
-	border-radius: 10px;
-	background: #6d6d6d3c;
-}
-.relative:hover > .dropdown {
-	display: block;
-}
-.cartButton {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	margin: 10px;
-	gap: 10px;
-}
-.cart {
-	font-size: 15px;
-	font-weight: 700;
-	background: #a0bf95;
-	color: white;
-	border: none;
+	position: absolute; /* Positioned relative to the nearest positioned ancestor */
+	top: 100%; /* Positioned below the triggering element */
+	left: 40px; /* Offset from the left */
+	display: grid; /* Grid layout */
+	grid-template-rows: auto; /* Automatic row height */
+	background: rgba(206, 206, 206, 0.809); /* Semi-transparent background */
+	width: 70px; /* Fixed width */
+	border-radius: 5px; /* Rounded corners */
+	display: none; /* Hidden by default */
 }
 
-.reviewContainer {
-	position: relative;
-	overflow: hidden;
-	grid-column: 3 / 4;
-	background: #ffffffab;
-	border-radius: 20px;
-	opacity: 98%;
-	border: 2px solid white;
-	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.173);
+/* Styles for paragraph inside dropdown */
+.dropdown > p {
+	grid-row: 1 / 2; /* Occupies the first row */
+	display: flex; /* Flexbox layout */
+	justify-content: center; /* Center items horizontally */
+	align-items: center; /* Center items vertically */
+	border-radius: 5px; /* Rounded corners */
+	height: 50px; /* Fixed height */
+	border: solid rgba(0, 0, 0, 0.071); /* Light border */
+	border-bottom-width: 1px; /* Border at the bottom */
 }
-.productFlex {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: flex-start;
-	flex-wrap: wrap;
-	gap: 5px;
-	padding: 5px;
-	height: 48%;
-	overflow: auto;
+
+/* Styles for dropdown paragraph on hover */
+.dropdown > p:hover {
+	flex-direction: column; /* Stack items vertically */
+	justify-content: space-around; /* Space items evenly */
+	align-items: center; /* Center items */
+	border-radius: 10px; /* More rounded corners on hover */
+	background: #6d6d6d3c; /* Background color on hover */
 }
-.moreItem {
-	height: 40%;
-	width: 160px;
-	flex-grow: 1;
-	background: #a0bf95;
-	border-radius: 10px;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.173);
-	overflow: hidden;
+
+/* Display dropdown on user quantity hover */
+.userQty:hover > .dropdown {
+	display: block; /* Show dropdown */
 }
-.moreItem > img {
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
-	object-position: center;
+/* Styles for the cart button */
+.cart {
+	font-size: 15px; /* Font size for cart text */
+	font-weight: 500; /* Medium font weight */
+	border: none; /* No border */
+	background: var(--accent-color); /* Background color from variable */
+	box-shadow: var(--shadow); /* Shadow effect from variable */
 }
+
+/* Container for recommended reviews with relative positioning */
+.recomended_review {
+	position: relative; /* Positioned relative for child elements */
+	overflow: hidden; /* Hide overflow content */
+	grid-column: 3; /* Occupies the third column */
+	grid-row: 2; /* Occupies the second row */
+	background: #ffffffab; /* Semi-transparent white background */
+	border-radius: 20px; /* Rounded corners */
+	opacity: 98%; /* Slight transparency */
+	border: 2px solid white; /* White border */
+	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.173); /* Shadow effect */
+}
+
+/* Layout for product items using flexbox */
+.product_layout {
+	display: flex; /* Flexbox layout */
+	flex-direction: row; /* Items in a row */
+	justify-content: center; /* Center items horizontally */
+	align-items: flex-start; /* Align items at the start vertically */
+	flex-wrap: wrap; /* Allow items to wrap onto next line */
+	gap: 5px; /* Space between items */
+	padding: 5px; /* Padding inside the container */
+	height: 48%; /* Fixed height */
+	overflow: auto; /* Scroll if overflow */
+}
+
+/* Container for individual items in the product layout */
+.itemContainer {
+	height: 40%; /* Fixed height */
+	width: 40%; /* Fixed width */
+	flex-grow: 1; /* Allow to grow and fill available space */
+	box-shadow: var(--shadow); /* Shadow effect from variable */
+	overflow: hidden; /* Hide overflow content */
+}
+
+/* Styles for images in item containers */
+.itemContainer > img {
+	height: 100%; /* Full height of the container */
+	width: 100%; /* Full width of the container */
+	object-fit: cover; /* Cover the container without stretching */
+	object-position: center; /* Center the image */
+}
+
+/* Shelf for user reviews positioned at the bottom */
 .reviewShelf {
-	position: absolute;
-	bottom: 0;
-	height: 50%;
-	text-align: center;
-	background: #ffffffab;
-	border-radius: 10px 0 0 0;
-	box-shadow: -5px -5px 20px rgba(0, 0, 0, 0.173);
+	position: absolute; /* Positioned absolutely */
+	bottom: 0; /* Aligned to the bottom */
+	height: 50%; /* Fixed height */
+	text-align: center; /* Center text */
+	background: #ffffffab; /* Semi-transparent white background */
+	border-radius: 10px 0 0 0; /* Rounded top-left corners */
+	box-shadow: -5px -5px 20px rgba(0, 0, 0, 0.173); /* Shadow effect */
 }
+
+/* Container for user reviews with flex layout */
 .userReview {
-	display: flex;
-	flex-wrap: wrap;
-	height: 78%;
-	gap: 5px;
-	padding: 5px;
-	justify-content: space-evenly;
-	overflow: scroll;
+	display: flex; /* Flexbox layout */
+	flex-wrap: wrap; /* Allow wrapping of items */
+	height: 78%; /* Fixed height */
+	gap: 5px; /* Space between reviews */
+	padding: 5px; /* Padding inside the container */
+	justify-content: space-evenly; /* Evenly distribute space */
+	overflow: scroll; /* Scroll if overflow */
 }
+
+/* Container for individual comments with grid layout */
 .commentContainer {
-	display: grid;
-	grid-template-columns: 50px auto;
-	grid-template-rows: 50px auto;
-	font-family: Arial;
-	width: 100%;
-	padding: 5px;
-	gap: 7px;
-	background: #ffffffab;
-	border-radius: 5px;
-	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.173);
+	display: grid; /* Grid layout */
+	grid-template-columns: 50px auto; /* Two columns: one for image, one for text */
+	grid-template-rows: 50px auto; /* Two rows: one for user image, one for comment */
+	font-family: Arial; /* Font family for text */
+	width: 100%; /* Full width */
+	padding: 5px; /* Padding inside the container */
+	gap: 7px; /* Space between grid items */
+	background: #ffffffab; /* Semi-transparent white background */
+	border-radius: 5px; /* Rounded corners */
+	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.173); /* Shadow effect */
 }
+
+/* Styles for user image in comments */
 .userImg {
-	grid-column: 1 / 2;
-	height: 50px;
-	width: 50px;
-	border-radius: 50%;
+	grid-column: 1 / 2; /* Occupies the first column */
+	height: 50px; /* Fixed height */
+	width: 50px; /* Fixed width */
+	border-radius: 50%; /* Circular image */
 }
+
+/* Styles for user name in comments */
 .userName {
-	grid-column: 2 / 4;
-	font-size: 20px;
-	text-align: left;
+	grid-column: 2 / 4; /* Occupies the second to third columns */
+	font-size: 20px; /* Font size for name */
+	text-align: left; /* Align text to the left */
 }
+
+/* Styles for comment text in user comments */
 .commentUser {
-	grid-column: 1 / 4;
-	grid-row: 2 / 3;
-	padding: 10px;
-	line-height: 30px;
-	text-align: justify;
-	text-align: left;
-	border-top: 1px solid #00000030;
+	grid-column: 1 / 4; /* Spans across all columns */
+	grid-row: 2 / 3; /* Occupies the second row */
+	padding: 10px; /* Padding inside the comment */
+	line-height: 30px; /* Spacing between lines */
+	text-align: justify; /* Justify text */
+	text-align: left; /* Align text to the left */
+	border-top: 1px solid #00000030; /* Top border with slight opacity */
 }
+
+/* Styles for the title of reviews */
 .reviewTitle {
-	font-family: arial;
-	font-size: 30px;
-	font-weight: bold;
+	font-family: arial; /* Font family for title */
+	font-size: 30px; /* Font size */
+	font-weight: bold; /* Bold font weight */
 }
+
+/* User input container for adding comments */
 .userInput {
-	position: absolute;
-	bottom: 0;
-	height: 50px;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	gap: 5px;
-	margin: 5px;
-	width: 95%;
+	position: absolute; /* Positioned absolutely */
+	bottom: 0; /* Aligned to the bottom */
+	height: 50px; /* Fixed height */
+	display: flex; /* Flexbox layout */
+	flex-direction: column; /* Stack items vertically */
+	flex-wrap: wrap; /* Allow wrapping of items */
+	gap: 5px; /* Space between input and button */
+	margin: 5px; /* Margin around the container */
+	width: 95%; /* Width of the container */
 }
+
+/* Styles for input field in user input */
 .userInput > input {
-	text-align: left;
-	text-decoration: none;
-	padding-left: 20px;
-	border-radius: 999px;
-	height: 50px;
-	width: 70%;
-	border: none;
-	color: black;
-	background: rgba(206, 206, 206, 0.668);
+	text-align: left; /* Align text to the left */
+	text-decoration: none; /* Remove text decoration */
+	padding-left: 20px; /* Padding on the left */
+	border-radius: 999px; /* Fully rounded input */
+	height: 50px; /* Fixed height */
+	width: 70%; /* Width of the input */
+	border: none; /* No border */
+	color: black; /* Text color */
+	background: var(--input-color); /* Background color from variable */
 }
+
+/* Styles for button in user input */
 .userInput > button {
-	border-radius: 999px;
-	height: 50px;
-	width: 30%;
-	border: none;
-	color: black;
-	background: rgba(211, 254, 196, 0.344);
-	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.173);
+	border-radius: 999px; /* Fully rounded button */
+	height: 50px; /* Fixed height */
+	width: 30%; /* Width of the button */
+	border: none; /* No border */
+	color: black; /* Text color */
+	background: rgba(
+		211,
+		254,
+		196,
+		0.344
+	); /* Background color with transparency */
+	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.173); /* Shadow effect */
+}
+
+/* Footer container with flex layout */
+footer {
+	display: flex; /* Flexbox layout */
+	justify-content: center; /* Center items horizontally */
+	align-items: center; /* Center items vertically */
+	position: absolute; /* Positioned absolutely */
+	bottom: 0; /* Aligned to the bottom */
+	height: 100px; /* Fixed height */
+	width: 100dvw; /* Full width */
+	background: var(--secondary-color); /* Background color from variable */
+	box-shadow: var(--shadow); /* Shadow effect from variable */
+}
+
+/* Styles for paragraph inside footer */
+footer > p {
+	font-size: 2.5vw; /* Font size responsive to viewport width */
+	color: white; /* Text color */
 }
